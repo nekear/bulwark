@@ -10,13 +10,6 @@
 	<a href="/" class="text-md font-medium transition-colors hover:text-primary"> Home </a>
 
 	<a
-		href="/about"
-		class="text-md font-medium text-muted-foreground transition-colors hover:text-primary"
-	>
-		About
-	</a>
-
-	<a
 		href="/services"
 		class="text-md font-medium text-muted-foreground transition-colors hover:text-primary"
 	>
@@ -28,12 +21,5 @@
 		class="text-md font-medium text-muted-foreground transition-colors hover:text-primary"
 	>
 		Feedback
-	</a>
-
-	<a
-		href="/contactUs"
-		class="text-md font-medium text-muted-foreground transition-colors hover:text-primary"
-	>
-		Contact us
 	</a>
 </nav>

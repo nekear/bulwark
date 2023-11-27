@@ -1,5 +1,4 @@
 <script lang="ts">
-	export const ssr = false;
 	import '../app.pcss';
 	import '@fontsource-variable/montserrat';
 	import Header from './header.svelte';
