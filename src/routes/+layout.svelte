@@ -1,5 +1,7 @@
 <script lang="ts">
     import "../app.pcss";
+    import "@fontsource-variable/montserrat";
+
     import Header from "./header.svelte";
 </script>
 

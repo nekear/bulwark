@@ -19,7 +19,7 @@
             </Button>
         </div>
     </div>
-    <div class="flex items-end">
+    <div class="flex items-end overflow-hidden">
         <img src={ogre} alt="Bulwark ogre" class="-mb-[100px]" />
     </div>
 </div>
