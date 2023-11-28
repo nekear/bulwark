@@ -1,5 +1,6 @@
 <script lang="ts">
     import * as Dialog from "$lib/components/ui/dialog";
+    import * as AlertDialog from "$lib/components/ui/alert-dialog";
     import {Label} from "$lib/components/ui/label";
     import {Input} from "$lib/components/ui/input"
     import {Textarea} from "$lib/components/ui/textarea"
@@ -10,10 +11,9 @@
     import {superForm, superValidateSync} from "sveltekit-superforms/client";
 
     export let buttonTitle = "Open";
-    export let callback: (data: FormTyping) => void;
 
-
-    let isModalOpen = false;
+    let isInputModalOpen = false;
+    let inputResultDialogData: FormTyping | undefined;
 
     const schemeValidator = superValidateSync(formSchema);
 
@@ -22,15 +22,15 @@
         validators: formSchema,
         onUpdate({form}) {
             if (form.valid){
-                callback(form.data);
-                isModalOpen = false;
+                inputResultDialogData = form.data;
+                isInputModalOpen = false;
             }
         }
     })
 </script>
 
-
-<Dialog.Root open={isModalOpen} onOpenChange={state => isModalOpen = state}>
+<!-- Main request input dialog -->
+<Dialog.Root open={isInputModalOpen} onOpenChange={state => isInputModalOpen = state}>
     <Dialog.Trigger class={buttonVariants({ variant: "default" })}>
         {buttonTitle}
     </Dialog.Trigger>
@@ -70,3 +70,18 @@
         </form>
     </Dialog.Content>
 </Dialog.Root>
+
+<!-- Notifying customer about successful request applying -->
+<AlertDialog.Root open={!!inputResultDialogData} onOpenChange={() => inputResultDialogData = undefined}>
+    <AlertDialog.Content>
+        <AlertDialog.Header>
+            <AlertDialog.Title>Thank you, {inputResultDialogData?.name ?? ""}!</AlertDialog.Title>
+            <AlertDialog.Description>
+                We will contact you at {inputResultDialogData?.email ?? ""} as soon as possible.
+            </AlertDialog.Description>
+        </AlertDialog.Header>
+        <AlertDialog.Footer>
+            <AlertDialog.Action>Got it</AlertDialog.Action>
+        </AlertDialog.Footer>
+    </AlertDialog.Content>
+</AlertDialog.Root>

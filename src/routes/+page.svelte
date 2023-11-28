@@ -1,10 +1,7 @@
 <script lang="ts">
     import ContactUsModal from "$lib/components/premade/dialog/contact-us";
     import ogre from "$lib/assets/characters/ogre_intro.png";
-    import * as AlertDialog from "$lib/components/ui/alert-dialog";
     import type {FormTyping} from "$lib/components/premade/dialog/contact-us/schema";
-
-    let requestModalData: FormTyping | undefined;
 </script>
 
 <!-- Main introduction container -->
@@ -19,26 +16,11 @@
             </p>
         </div>
         <div>
-            <ContactUsModal buttonTitle="Get Safety" callback={data => {requestModalData = data;}}/>
+            <ContactUsModal buttonTitle="Get Safety"/>
         </div>
     </div>
     <div class="flex items-end -mb-[400px] md:-mb-[100px]">
         <img src={ogre} alt="Bulwark ogre"/>
     </div>
 </div>
-
-<!-- Notifying customer about successful request applying -->
-<AlertDialog.Root open={!!requestModalData} onOpenChange={() => requestModalData = undefined}>
-    <AlertDialog.Content>
-        <AlertDialog.Header>
-            <AlertDialog.Title>Thank you, {requestModalData?.name ?? ""}!</AlertDialog.Title>
-            <AlertDialog.Description>
-                We will contact you at {requestModalData?.email ?? ""} as soon as possible.
-            </AlertDialog.Description>
-        </AlertDialog.Header>
-        <AlertDialog.Footer>
-            <AlertDialog.Action>Got it</AlertDialog.Action>
-        </AlertDialog.Footer>
-    </AlertDialog.Content>
-</AlertDialog.Root>
 
